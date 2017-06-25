@@ -75,6 +75,7 @@
     <Compile Include="service\MotherboardService.cs" />
     <Compile Include="service\ProcessorService.cs" />
     <Compile Include="service\SystemService.cs" />
+    <Compile Include="service\VideoAdapterService.cs" />
     <EmbeddedResource Include="gui\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

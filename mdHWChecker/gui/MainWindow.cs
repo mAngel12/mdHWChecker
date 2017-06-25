@@ -24,11 +24,8 @@ namespace mdHWChecker.gui
             motherboardService.InsertInformationsToListView(ref motherboardView);
             MemoryService memoryService = new MemoryService();
             memoryService.InsertInformationsToListView(ref memoryView);
-        }
-
-        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
+            VideoAdapterService videoAdapterService = new VideoAdapterService();
+            videoAdapterService.InsertInformationsToListView(ref videoAdapterView);
         }
     }
 }

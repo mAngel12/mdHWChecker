@@ -26,6 +26,8 @@ namespace mdHWChecker.gui
             memoryService.InsertInformationsToListView(ref memoryView);
             VideoAdapterService videoAdapterService = new VideoAdapterService();
             videoAdapterService.InsertInformationsToListView(ref videoAdapterView);
+            AudioService audioService = new AudioService();
+            audioService.InsertInformationsToListView(ref audioView);
         }
     }
 }

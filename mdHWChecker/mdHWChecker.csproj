@@ -70,6 +70,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\AudioService.cs" />
     <Compile Include="service\InformationService.cs" />
     <Compile Include="service\MemoryService.cs" />
     <Compile Include="service\MotherboardService.cs" />

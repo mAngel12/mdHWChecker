@@ -39,9 +39,23 @@ namespace mdHWChecker.gui
             temperatureService.InsertInformationsToListView(ref temperatureView);
         }
 
-        private void refreshInformationsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InitializeInformations();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("mdHWChecker is a simple application to checking your computer's configuration. \n" +
+                "Copyright © 2017 DultzDev. \n" +
+                "mdHwChecker v0.1 \n" +
+                "Visit www.dultzdev.com for updates and more informations. \n"
+                , "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

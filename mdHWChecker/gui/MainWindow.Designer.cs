@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.temperaturePage = new System.Windows.Forms.TabPage();
             this.temperatureView = new System.Windows.Forms.ListView();
+            this.featureTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.descriptionTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.drivesPage = new System.Windows.Forms.TabPage();
             this.drivesView = new System.Windows.Forms.ListView();
             this.featureDrivesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,9 +67,6 @@
             this.featureSystemColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.descriptionSystemColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.featureTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.descriptionTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.refreshInformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.temperaturePage.SuspendLayout();
             this.drivesPage.SuspendLayout();
@@ -81,8 +83,7 @@
             // 
             this.menuStrip.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileStripMenuItem,
-            this.refreshInformationsToolStripMenuItem,
+            this.programToolStripMenuItem,
             this.helpStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -90,17 +91,43 @@
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip";
             // 
-            // fileStripMenuItem
+            // programToolStripMenuItem
             // 
-            this.fileStripMenuItem.Name = "fileStripMenuItem";
-            this.fileStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileStripMenuItem.Text = "File";
+            this.programToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.programToolStripMenuItem.Name = "programToolStripMenuItem";
+            this.programToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.programToolStripMenuItem.Text = "Program";
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpStripMenuItem
             // 
+            this.helpStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
             this.helpStripMenuItem.Name = "helpStripMenuItem";
             this.helpStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // temperaturePage
             // 
@@ -126,6 +153,16 @@
             this.temperatureView.TabIndex = 0;
             this.temperatureView.UseCompatibleStateImageBehavior = false;
             this.temperatureView.View = System.Windows.Forms.View.Details;
+            // 
+            // featureTemperatureColumnHeader
+            // 
+            this.featureTemperatureColumnHeader.Text = "Feature";
+            this.featureTemperatureColumnHeader.Width = 200;
+            // 
+            // descriptionTemperatureColumnHeader
+            // 
+            this.descriptionTemperatureColumnHeader.Text = "Description";
+            this.descriptionTemperatureColumnHeader.Width = 350;
             // 
             // drivesPage
             // 
@@ -384,23 +421,6 @@
             this.tabControl.Size = new System.Drawing.Size(569, 432);
             this.tabControl.TabIndex = 0;
             // 
-            // featureTemperatureColumnHeader
-            // 
-            this.featureTemperatureColumnHeader.Text = "Feature";
-            this.featureTemperatureColumnHeader.Width = 200;
-            // 
-            // descriptionTemperatureColumnHeader
-            // 
-            this.descriptionTemperatureColumnHeader.Text = "Description";
-            this.descriptionTemperatureColumnHeader.Width = 350;
-            // 
-            // refreshInformationsToolStripMenuItem
-            // 
-            this.refreshInformationsToolStripMenuItem.Name = "refreshInformationsToolStripMenuItem";
-            this.refreshInformationsToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
-            this.refreshInformationsToolStripMenuItem.Text = "Refresh Informations";
-            this.refreshInformationsToolStripMenuItem.Click += new System.EventHandler(this.refreshInformationsToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             this.ClientSize = new System.Drawing.Size(569, 456);
@@ -428,9 +448,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem fileStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshInformationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem programToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage temperaturePage;
         private System.Windows.Forms.TabPage drivesPage;

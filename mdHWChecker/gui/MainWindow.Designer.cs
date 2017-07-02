@@ -37,10 +37,6 @@
             this.drivesView = new System.Windows.Forms.ListView();
             this.featureDrivesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.descriptionDrivesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.networkPage = new System.Windows.Forms.TabPage();
-            this.networkView = new System.Windows.Forms.ListView();
-            this.featureNetworkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.descriptionNetworkColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.audioPage = new System.Windows.Forms.TabPage();
             this.audioView = new System.Windows.Forms.ListView();
             this.featureAudioColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +65,6 @@
             this.menuStrip.SuspendLayout();
             this.temperaturePage.SuspendLayout();
             this.drivesPage.SuspendLayout();
-            this.networkPage.SuspendLayout();
             this.audioPage.SuspendLayout();
             this.videoAdapterPage.SuspendLayout();
             this.memoryPage.SuspendLayout();
@@ -157,40 +152,6 @@
             // 
             this.descriptionDrivesColumnHeader.Text = "Description";
             this.descriptionDrivesColumnHeader.Width = 400;
-            // 
-            // networkPage
-            // 
-            this.networkPage.Controls.Add(this.networkView);
-            this.networkPage.Location = new System.Drawing.Point(4, 22);
-            this.networkPage.Name = "networkPage";
-            this.networkPage.Padding = new System.Windows.Forms.Padding(3);
-            this.networkPage.Size = new System.Drawing.Size(561, 406);
-            this.networkPage.TabIndex = 0;
-            this.networkPage.Text = "Network";
-            this.networkPage.UseVisualStyleBackColor = true;
-            // 
-            // networkView
-            // 
-            this.networkView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.featureNetworkColumnHeader,
-            this.descriptionNetworkColumnHeader});
-            this.networkView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.networkView.Location = new System.Drawing.Point(3, 3);
-            this.networkView.Name = "networkView";
-            this.networkView.Size = new System.Drawing.Size(555, 400);
-            this.networkView.TabIndex = 0;
-            this.networkView.UseCompatibleStateImageBehavior = false;
-            this.networkView.View = System.Windows.Forms.View.Details;
-            // 
-            // featureNetworkColumnHeader
-            // 
-            this.featureNetworkColumnHeader.Text = "Feature";
-            this.featureNetworkColumnHeader.Width = 150;
-            // 
-            // descriptionNetworkColumnHeader
-            // 
-            this.descriptionNetworkColumnHeader.Text = "Description";
-            this.descriptionNetworkColumnHeader.Width = 400;
             // 
             // audioPage
             // 
@@ -406,7 +367,6 @@
             this.tabControl.Controls.Add(this.memoryPage);
             this.tabControl.Controls.Add(this.videoAdapterPage);
             this.tabControl.Controls.Add(this.audioPage);
-            this.tabControl.Controls.Add(this.networkPage);
             this.tabControl.Controls.Add(this.drivesPage);
             this.tabControl.Controls.Add(this.temperaturePage);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -428,7 +388,6 @@
             this.menuStrip.PerformLayout();
             this.temperaturePage.ResumeLayout(false);
             this.drivesPage.ResumeLayout(false);
-            this.networkPage.ResumeLayout(false);
             this.audioPage.ResumeLayout(false);
             this.videoAdapterPage.ResumeLayout(false);
             this.memoryPage.ResumeLayout(false);
@@ -449,7 +408,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage temperaturePage;
         private System.Windows.Forms.TabPage drivesPage;
-        private System.Windows.Forms.TabPage networkPage;
         private System.Windows.Forms.TabPage audioPage;
         private System.Windows.Forms.TabPage videoAdapterPage;
         private System.Windows.Forms.TabPage memoryPage;
@@ -462,7 +420,6 @@
         private System.Windows.Forms.ListView memoryView;
         private System.Windows.Forms.ListView videoAdapterView;
         private System.Windows.Forms.ListView audioView;
-        private System.Windows.Forms.ListView networkView;
         private System.Windows.Forms.ListView drivesView;
         private System.Windows.Forms.ListView temperatureView;
         private System.Windows.Forms.ColumnHeader featureProcessorColumnHeader;
@@ -477,8 +434,6 @@
         private System.Windows.Forms.ColumnHeader descriptionMotherboardColumnHeader;
         private System.Windows.Forms.ColumnHeader featureDrivesColumnHeader;
         private System.Windows.Forms.ColumnHeader descriptionDrivesColumnHeader;
-        private System.Windows.Forms.ColumnHeader featureNetworkColumnHeader;
-        private System.Windows.Forms.ColumnHeader descriptionNetworkColumnHeader;
         private System.Windows.Forms.ColumnHeader featureAudioColumnHeader;
         private System.Windows.Forms.ColumnHeader descriptionAudioColumnHeader;
     }

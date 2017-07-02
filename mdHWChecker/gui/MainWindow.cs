@@ -28,6 +28,8 @@ namespace mdHWChecker.gui
             videoAdapterService.InsertInformationsToListView(ref videoAdapterView);
             AudioService audioService = new AudioService();
             audioService.InsertInformationsToListView(ref audioView);
+            DrivesService drivesService = new DrivesService();
+            drivesService.InsertInformationsToListView(ref drivesView);
         }
     }
 }

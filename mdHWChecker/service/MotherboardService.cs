@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace mdHWChecker.service
 {
-    public class MotherboardService : InformationService
+    public sealed class MotherboardService : InformationService
     {
         ManagementObjectSearcher baseboardInfo;
         ManagementObjectSearcher motherboardInfo;
@@ -31,121 +31,23 @@ namespace mdHWChecker.service
                 foreach (ManagementObject mObject in baseboardInfo.Get())
                 {
                     viewGroup = listView.Groups.Add(mObject["Name"].ToString(), mObject["Name"].ToString());
-                    foreach (PropertyData data in mObject.Properties)
-                    {
-                        if (data.Name == "Product")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Model:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Manufacturer")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Brand:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                    }
+
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Manufacturer", "Brand"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Product", "Model"));
+
                     foreach (ManagementObject mObj in motherboardInfo.Get())
                     {
-                        foreach (PropertyData data in mObj.Properties)
-                        {
-                            if (data.Name == "PrimaryBusType")
-                            {
-                                ListViewItem item = new ListViewItem(viewGroup);
-                                item.Text = "Primary Bus Type:";
-                                if (data.Value != null && data.Value.ToString() != "")
-                                {
-                                    item.SubItems.Add(CheckSystem(data));
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                                listView.Items.Add(item);
-                            }
-                            else if (data.Name == "SecondaryBusType")
-                            {
-                                ListViewItem item = new ListViewItem(viewGroup);
-                                item.Text = "Secondary Bus Type:";
-                                if (data.Value != null && data.Value.ToString() != "")
-                                {
-                                    item.SubItems.Add(CheckSystem(data));
-                                }
-                                else
-                                {
-                                    continue;
-                                }
-                                listView.Items.Add(item);
-                            }
-                        }
+                        listView.Items.Add(GenerateInformation(mObj, viewGroup, "PrimaryBusType", "Primary Bus Type"));
+                        listView.Items.Add(GenerateInformation(mObj, viewGroup, "SecondaryBusType", "Secondary Bus Type"));
                     }
                 }
                 foreach (ManagementObject mObject in biosInfo.Get())
                 {
                     viewGroup = listView.Groups.Add("BIOS", "BIOS");
 
-                    foreach (PropertyData data in mObject.Properties)
-                    {
-                        if (data.Name == "Manufacturer")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "BIOS Manufacturer:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "SMBIOSBIOSVersion")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "BIOS Version:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "ReleaseDate")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "BIOS Date:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                    }
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Manufacturer", "BIOS Manufacturer"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "ReleaseDate", "BIOS Date"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "SMBIOSBIOSVersion", "BIOS Version"));
                 }
 
             }

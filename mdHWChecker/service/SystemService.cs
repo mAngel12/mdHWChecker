@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace mdHWChecker.service
 {
-    public class SystemService : InformationService
+    public sealed class SystemService : InformationService
     {
         ManagementObjectSearcher computerInfo;
         ManagementObjectSearcher systemInfo;
@@ -30,102 +30,18 @@ namespace mdHWChecker.service
                 {
                     viewGroup = listView.Groups.Add("Current Computer", "Current Computer");
 
-                    foreach (PropertyData data in mObject.Properties)
-                    {
-                        if (data.Name == "Name")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Computer Name:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Manufacturer")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Computer Brand:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Model")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Computer Model Name:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                    }
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Name", "Computer Name"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Manufacturer", "Computer Brand"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Model", "Computer Model Name"));
                 }
 
                 foreach (ManagementObject mObject in systemInfo.Get())
                 {
                     viewGroup = listView.Groups.Add("Operating System", "Operating System");
 
-                    foreach (PropertyData data in mObject.Properties)
-                    {
-                        if (data.Name == "Caption")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Operating System:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "OSArchitecture")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "System Architecture:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Version")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "System Version:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                    }
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Caption", "Operating System"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "OSArchitecture", "System Architecture"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Version", "System Version"));
                 }
             }
 

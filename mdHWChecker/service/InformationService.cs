@@ -12,32 +12,55 @@ namespace mdHWChecker.service
     {
         public virtual void InsertInformationsToListView(ref ListView listView)
         {
+
         }
 
-        protected string CheckSystem(PropertyData data)
+        protected ListViewItem GenerateInformation(ManagementObject mObject, ListViewGroup viewGroup, String infoName, String displayName)
         {
-            switch (data.Value.GetType().ToString())
+            ListViewItem item = new ListViewItem(viewGroup);
+            item.Text = displayName + ":";
+
+            try
             {
-                case "System.String[]":
-                    string[] str = (string[])data.Value;
-                    string str2 = "";
-                    foreach (string st in str)
-                        str2 += st + " ";
-                    return str2;
-                    break;
-
-                case "System.UInt16[]":
-                    ushort[] shortData = (ushort[])data.Value;
-                    string tstr2 = "";
-                    foreach (ushort st in shortData)
-                        tstr2 += st.ToString() + " ";
-                    return tstr2;
-                    break;
-
-                default:
-                    return data.Value.ToString();
-                    break;
+                if (!string.IsNullOrEmpty(mObject[infoName].ToString()))
+                {
+                    item.SubItems.Add(mObject[infoName].ToString());
+                }
+                else
+                {
+                    item.SubItems.Add("Information not available!");
+                }
             }
+
+            catch(Exception e)
+            {
+                item.SubItems.Add("Information not available!");
+            }
+
+            return item;
+        }
+
+        protected ListViewItem GenerateEmpty(ListViewGroup viewGroup)
+        {
+            ListViewItem item = new ListViewItem(viewGroup);
+            item.Text = String.Empty;
+            return item;
+        }
+
+        protected ListViewItem SimpleDecoder(ListViewItem item, String endText)
+        {
+            if (!string.IsNullOrEmpty(item.SubItems[1].Text))
+            {
+                String value = item.SubItems[1].Text;
+                String text = item.Text;
+                if (value != "Information not available!")
+                {
+                    item.SubItems.Clear();
+                    item.Text = text;
+                    item.SubItems.Add(value + " " + endText);
+                }
+            }
+            return item;
         }
     }
 }

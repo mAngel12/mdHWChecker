@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace mdHWChecker.service
 {
-    public class ProcessorService : InformationService
+    public sealed class ProcessorService : InformationService
     {
         ManagementObjectSearcher processorInfo;
 
@@ -35,309 +35,155 @@ namespace mdHWChecker.service
                         viewGroup = listView.Groups.Add(mObject.ToString(), mObject.ToString());
                     }
 
-                    foreach (PropertyData data in mObject.Properties)
-                    {
-                        if (data.Name == "Name")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Processor Name:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Manufacturer")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Processor Brand:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "CurrentClockSpeed")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Processor Frequency:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data) + " MHz");
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "MaxClockSpeed")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Maximum CPU Frequency:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data) + " MHz");
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "NumberOfCores")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Number of CPU Cores:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "NumberOfLogicalProcessors")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Number of Logical CPUs:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "ProcessorId")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU ID:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Architecture")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU Architecture:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                switch (CheckSystem(data))
-                                {
-                                    case "0":
-                                        item.SubItems.Add("x86");
-                                        break;
-                                    case "1":
-                                        item.SubItems.Add("MIPS");
-                                        break;
-                                    case "2":
-                                        item.SubItems.Add("Alpha");
-                                        break;
-                                    case "3":
-                                        item.SubItems.Add("PowerPC");
-                                        break;
-                                    case "5":
-                                        item.SubItems.Add("ARM");
-                                        break;
-                                    case "6":
-                                        item.SubItems.Add("ia64");
-                                        break;
-                                    case "9":
-                                        item.SubItems.Add("x64");
-                                        break;
-                                    default:
-                                        item.SubItems.Add("Other");
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "L2CacheSize")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "L2 Cache:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data) + " kB");
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "CpuStatus")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU Status:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                switch (CheckSystem(data))
-                                {
-                                    case "0":
-                                        item.SubItems.Add("Unknown");
-                                        break;
-                                    case "1":
-                                        item.SubItems.Add("CPU Enabled");
-                                        break;
-                                    case "2":
-                                        item.SubItems.Add("CPU Disabled by User via BIOS Setup");
-                                        break;
-                                    case "3":
-                                        item.SubItems.Add("CPU Disabled By BIOS(POST Error)");
-                                        break;
-                                    case "4":
-                                        item.SubItems.Add("CPU is Idle");
-                                        break;
-                                    case "5":
-                                    case "6":
-                                        item.SubItems.Add("Reserved");
-                                        break;
-                                    default:
-                                        item.SubItems.Add("Other");
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "ExtClock")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "External Clock Frequency:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data) + " MHz");
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "ProcessorType")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Processor Type:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                switch (CheckSystem(data))
-                                {
-                                    case "2":
-                                        item.SubItems.Add("Unknown");
-                                        break;
-                                    case "3":
-                                        item.SubItems.Add("Central Processor");
-                                        break;
-                                    case "4":
-                                        item.SubItems.Add("Math Processor");
-                                        break;
-                                    case "5":
-                                        item.SubItems.Add("DSP Processor");
-                                        break;
-                                    case "6":
-                                        item.SubItems.Add("Video Processor");
-                                        break;
-                                    default:
-                                        item.SubItems.Add("Other");
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Version")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU Version:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "SocketDesignation")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "Socket Designation:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Status")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU Status:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                        else if (data.Name == "Description")
-                        {
-                            ListViewItem item = new ListViewItem(viewGroup);
-                            item.Text = "CPU Description:";
-                            if (data.Value != null && data.Value.ToString() != "")
-                            {
-                                item.SubItems.Add(CheckSystem(data));
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            listView.Items.Add(item);
-                        }
-                    }
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Manufacturer", "Processor Brand"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Name", "Processor Name"));
+                    listView.Items.Add(SimpleDecoder(GenerateInformation(mObject, viewGroup, "CurrentClockSpeed", "Processor Frequency"), "MHz"));
+
+                    listView.Items.Add(GenerateEmpty(viewGroup));
+
+                    listView.Items.Add(ProcessorTypeDecoder(GenerateInformation(mObject, viewGroup, "ProcessorType", "Processor Type")));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "ProcessorId", "CPU ID"));
+                    listView.Items.Add(CPUArchitectureDecoder(GenerateInformation(mObject, viewGroup, "Architecture", "CPU Architecture")));
+                    listView.Items.Add(CPUStatusDecoder(GenerateInformation(mObject, viewGroup, "CpuStatus", "CPU Status")));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Description", "CPU Description"));
+
+                    listView.Items.Add(GenerateEmpty(viewGroup));
+
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "NumberOfCores", "Number of CPU Cores"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "NumberOfLogicalProcessors", "Number of Logical CPUs"));
+
+                    listView.Items.Add(GenerateEmpty(viewGroup));
+
+                    listView.Items.Add(SimpleDecoder(GenerateInformation(mObject, viewGroup, "L2CacheSize", "L2 Cache"), "kB"));
+                    listView.Items.Add(SimpleDecoder(GenerateInformation(mObject, viewGroup, "MaxClockSpeed", "Maximum CPU Frequency"), "MHz"));
+                    listView.Items.Add(SimpleDecoder(GenerateInformation(mObject, viewGroup, "ExtClock", "External Clock Frequency"), "MHz"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Version", "CPU Version"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "SocketDesignation", "Socket Designation"));
+                    listView.Items.Add(GenerateInformation(mObject, viewGroup, "Status", "Status"));
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show("Error with get data from your computer. \n" + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private ListViewItem CPUArchitectureDecoder(ListViewItem item)
+        {
+            if (!string.IsNullOrEmpty(item.SubItems[1].Text))
+            {
+                String value = item.SubItems[1].Text;
+                String text = item.Text;
+                if (value != "Information not available!")
+                {
+                    item.SubItems.Clear();
+                    item.Text = text;
+                    switch (value)
+                    {
+                        case "0":
+                            item.SubItems.Add("x86");
+                            break;
+                        case "1":
+                            item.SubItems.Add("MIPS");
+                            break;
+                        case "2":
+                            item.SubItems.Add("Alpha");
+                            break;
+                        case "3":
+                            item.SubItems.Add("PowerPC");
+                            break;
+                        case "5":
+                            item.SubItems.Add("ARM");
+                            break;
+                        case "6":
+                            item.SubItems.Add("ia64");
+                            break;
+                        case "9":
+                            item.SubItems.Add("x64");
+                            break;
+                        default:
+                            item.SubItems.Add("Other");
+                            break;
+                    }
+                }
+            }
+            return item;
+        }
+
+        private ListViewItem CPUStatusDecoder(ListViewItem item)
+        {
+            if (!string.IsNullOrEmpty(item.SubItems[1].Text))
+            {
+                String value = item.SubItems[1].Text;
+                String text = item.Text;
+                if (value != "Information not available!")
+                {
+                    item.SubItems.Clear();
+                    item.Text = text;
+                    switch (value)
+                    {
+                        case "0":
+                            item.SubItems.Add("Unknown");
+                            break;
+                        case "1":
+                            item.SubItems.Add("CPU Enabled");
+                            break;
+                        case "2":
+                            item.SubItems.Add("CPU Disabled by User via BIOS Setup");
+                            break;
+                        case "3":
+                            item.SubItems.Add("CPU Disabled By BIOS(POST Error)");
+                            break;
+                        case "4":
+                            item.SubItems.Add("CPU is Idle");
+                            break;
+                        case "5":
+                        case "6":
+                            item.SubItems.Add("Reserved");
+                            break;
+                        default:
+                            item.SubItems.Add("Other");
+                            break;
+                    }
+                }
+            }
+            return item;
+        }
+
+        private ListViewItem ProcessorTypeDecoder(ListViewItem item)
+        {
+            if (!string.IsNullOrEmpty(item.SubItems[1].Text))
+            {
+                String value = item.SubItems[1].Text;
+                String text = item.Text;
+                if (value != "Information not available!")
+                {
+                    item.SubItems.Clear();
+                    item.Text = text;
+                    switch (value)
+                    {
+                        case "2":
+                            item.SubItems.Add("Unknown");
+                            break;
+                        case "3":
+                            item.SubItems.Add("Central Processor");
+                            break;
+                        case "4":
+                            item.SubItems.Add("Math Processor");
+                            break;
+                        case "5":
+                            item.SubItems.Add("DSP Processor");
+                            break;
+                        case "6":
+                            item.SubItems.Add("Video Processor");
+                            break;
+                        default:
+                            item.SubItems.Add("Other");
+                            break;
+                    }
+                }
+            }
+            return item;
         }
     }
 }

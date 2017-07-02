@@ -32,7 +32,7 @@ namespace mdHWChecker.service
                 }
             }
 
-            catch(Exception e)
+            catch
             {
                 item.SubItems.Add("Information not available!");
             }

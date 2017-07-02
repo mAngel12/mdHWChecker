@@ -62,6 +62,9 @@
             this.featureSystemColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.descriptionSystemColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.featureTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.descriptionTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.refreshInformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.temperaturePage.SuspendLayout();
             this.drivesPage.SuspendLayout();
@@ -79,6 +82,7 @@
             this.menuStrip.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileStripMenuItem,
+            this.refreshInformationsToolStripMenuItem,
             this.helpStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -112,12 +116,16 @@
             // temperatureView
             // 
             this.temperatureView.BackColor = System.Drawing.SystemColors.Window;
+            this.temperatureView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.featureTemperatureColumnHeader,
+            this.descriptionTemperatureColumnHeader});
             this.temperatureView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.temperatureView.Location = new System.Drawing.Point(3, 3);
             this.temperatureView.Name = "temperatureView";
             this.temperatureView.Size = new System.Drawing.Size(555, 400);
             this.temperatureView.TabIndex = 0;
             this.temperatureView.UseCompatibleStateImageBehavior = false;
+            this.temperatureView.View = System.Windows.Forms.View.Details;
             // 
             // drivesPage
             // 
@@ -376,6 +384,23 @@
             this.tabControl.Size = new System.Drawing.Size(569, 432);
             this.tabControl.TabIndex = 0;
             // 
+            // featureTemperatureColumnHeader
+            // 
+            this.featureTemperatureColumnHeader.Text = "Feature";
+            this.featureTemperatureColumnHeader.Width = 200;
+            // 
+            // descriptionTemperatureColumnHeader
+            // 
+            this.descriptionTemperatureColumnHeader.Text = "Description";
+            this.descriptionTemperatureColumnHeader.Width = 350;
+            // 
+            // refreshInformationsToolStripMenuItem
+            // 
+            this.refreshInformationsToolStripMenuItem.Name = "refreshInformationsToolStripMenuItem";
+            this.refreshInformationsToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.refreshInformationsToolStripMenuItem.Text = "Refresh Informations";
+            this.refreshInformationsToolStripMenuItem.Click += new System.EventHandler(this.refreshInformationsToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.ClientSize = new System.Drawing.Size(569, 456);
@@ -405,6 +430,7 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshInformationsToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage temperaturePage;
         private System.Windows.Forms.TabPage drivesPage;
@@ -436,5 +462,7 @@
         private System.Windows.Forms.ColumnHeader descriptionDrivesColumnHeader;
         private System.Windows.Forms.ColumnHeader featureAudioColumnHeader;
         private System.Windows.Forms.ColumnHeader descriptionAudioColumnHeader;
+        private System.Windows.Forms.ColumnHeader featureTemperatureColumnHeader;
+        private System.Windows.Forms.ColumnHeader descriptionTemperatureColumnHeader;
     }
 }

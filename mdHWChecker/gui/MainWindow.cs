@@ -16,6 +16,11 @@ namespace mdHWChecker.gui
         public MainWindow()
         {
             InitializeComponent();
+            InitializeInformations();
+        }
+
+        private void InitializeInformations()
+        {
             SystemService systemService = new SystemService();
             systemService.InsertInformationsToListView(ref systemView);
             ProcessorService processorService = new ProcessorService();
@@ -30,6 +35,13 @@ namespace mdHWChecker.gui
             audioService.InsertInformationsToListView(ref audioView);
             DrivesService drivesService = new DrivesService();
             drivesService.InsertInformationsToListView(ref drivesView);
+            TemperatureService temperatureService = new TemperatureService();
+            temperatureService.InsertInformationsToListView(ref temperatureView);
+        }
+
+        private void refreshInformationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InitializeInformations();
         }
     }
 }

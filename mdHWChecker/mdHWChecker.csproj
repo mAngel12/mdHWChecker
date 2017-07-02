@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,6 +80,7 @@
     <Compile Include="service\MotherboardService.cs" />
     <Compile Include="service\ProcessorService.cs" />
     <Compile Include="service\SystemService.cs" />
+    <Compile Include="service\TemperatureService.cs" />
     <Compile Include="service\VideoAdapterService.cs" />
     <EmbeddedResource Include="gui\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -90,6 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

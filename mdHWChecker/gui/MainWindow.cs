@@ -21,6 +21,9 @@ namespace mdHWChecker.gui
 
         private void InitializeInformations()
         {
+            PleaseWaitWindow pleaseWaitWindow = new PleaseWaitWindow();
+            pleaseWaitWindow.Show();
+
             SystemService systemService = new SystemService();
             systemService.InsertInformationsToListView(ref systemView);
             ProcessorService processorService = new ProcessorService();
@@ -37,6 +40,8 @@ namespace mdHWChecker.gui
             drivesService.InsertInformationsToListView(ref drivesView);
             TemperatureService temperatureService = new TemperatureService();
             temperatureService.InsertInformationsToListView(ref temperatureView);
+
+            pleaseWaitWindow.Close();
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)

@@ -23,13 +23,16 @@ namespace mdHWChecker.service
 
             try
             {
+                int i = 1;
                 foreach (ManagementObject mObject in temperatureInfo.Get())
                 {
-                    viewGroup = listView.Groups.Add("Temperature", "Temperature");
+                    viewGroup = listView.Groups.Add("Temperature Sensor " + i, "Temperature Sensor " + i);
 
                     listView.Items.Add(TemperatureDecoder(GenerateInformation(mObject, viewGroup, "CurrentTemperature", "Current Temperature")));
                     listView.Items.Add(TemperatureDecoder(GenerateInformation(mObject, viewGroup, "PassiveTripPoint", "Temperature to activate CPU throttling")));
                     listView.Items.Add(TemperatureDecoder(GenerateInformation(mObject, viewGroup, "CriticalTripPoint", "Temperature to shutdown the system")));
+
+                    i++;
                 }
             }
             catch(Exception e)

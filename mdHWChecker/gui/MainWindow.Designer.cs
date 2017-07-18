@@ -31,10 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveReportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.temperaturePage = new System.Windows.Forms.TabPage();
             this.temperatureView = new System.Windows.Forms.ListView();
             this.featureTemperatureColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -95,23 +97,31 @@
             // programToolStripMenuItem
             // 
             this.programToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveReportToolStripMenuItem,
             this.refreshToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.programToolStripMenuItem.Name = "programToolStripMenuItem";
             this.programToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.programToolStripMenuItem.Text = "Program";
             // 
+            // saveReportToolStripMenuItem
+            // 
+            this.saveReportToolStripMenuItem.Name = "saveReportToolStripMenuItem";
+            this.saveReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveReportToolStripMenuItem.Text = "Save Report";
+            this.saveReportToolStripMenuItem.Click += new System.EventHandler(this.saveReportToolStripMenuItem_Click);
+            // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -129,6 +139,12 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // saveReportToolStripMenuItem1
+            // 
+            this.saveReportToolStripMenuItem1.Name = "saveReportToolStripMenuItem1";
+            this.saveReportToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.saveReportToolStripMenuItem1.Text = "Save Report";
             // 
             // temperaturePage
             // 
@@ -488,5 +504,7 @@
         private System.Windows.Forms.ColumnHeader descriptionAudioColumnHeader;
         private System.Windows.Forms.ColumnHeader featureTemperatureColumnHeader;
         private System.Windows.Forms.ColumnHeader descriptionTemperatureColumnHeader;
+        private System.Windows.Forms.ToolStripMenuItem saveReportToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem saveReportToolStripMenuItem;
     }
 }

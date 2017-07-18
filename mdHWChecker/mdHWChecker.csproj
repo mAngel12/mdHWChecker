@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="converter\ListViewToStringConverter.cs" />
     <Compile Include="gui\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

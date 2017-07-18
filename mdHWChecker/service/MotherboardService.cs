@@ -23,7 +23,7 @@ namespace mdHWChecker.service
 
         public override void InsertInformationsToListView(ref ListView listView)
         {
-            listView.Items.Clear();
+            ClearListView(ref listView);
             ListViewGroup viewGroup;
 
             try

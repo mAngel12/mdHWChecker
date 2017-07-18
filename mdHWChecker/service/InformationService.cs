@@ -62,5 +62,11 @@ namespace mdHWChecker.service
             }
             return item;
         }
+
+        protected void ClearListView(ref ListView listView)
+        {
+            listView.Items.Clear();
+            listView.Groups.Clear();
+        }
     }
 }

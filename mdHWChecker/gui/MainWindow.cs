@@ -65,6 +65,7 @@ namespace mdHWChecker.gui
             {
                 string text = GetReportText();
                 File.WriteAllText(saveFileDialog.FileName, text);
+                System.Diagnostics.Process.Start(@saveFileDialog.FileName);
             }
         }
 
